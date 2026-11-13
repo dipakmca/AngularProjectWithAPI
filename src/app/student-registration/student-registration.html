@@ -1,24 +1,51 @@
 <form (ngSubmit)="saveStudent()">
+
   <label>Student Name:</label>
-  <input type="text" [(ngModel)]="student.studentName" name="studentName">
+  <input
+    type="text"
+    name="studentName"
+    [(ngModel)]="student.studentName"
+    required
+  />
 
   <br><br>
 
   <label>Email:</label>
-  <input type="email" [(ngModel)]="student.email" name="email">
+  <input
+    type="email"
+    name="email"
+    [(ngModel)]="student.email"
+    required
+  />
 
   <br><br>
+
   <label>Password:</label>
-  <input type="password" [(ngModel)]="student.password" name="password">
+  <input
+    type="password"
+    name="password"
+    [(ngModel)]="student.password"
+    required
+  />
 
   <br><br>
 
   <label>Mobile:</label>
-  <input type="text" [(ngModel)]="student.mobile" name="mobile">
+  <input
+    type="text"
+    name="mobile"
+    [(ngModel)]="student.mobile"
+    required
+  />
 
   <br><br>
 
-  <button type="submit">Register</button>
+  <button type="submit" [disabled]="isSubmitting">
+    {{ isSubmitting ? 'Registering...' : 'Register' }}
+  </button>
+
+  <br>
+
+  <a routerLink="/">Go Back</a>
 
 </form>
-<a routerLink="/">Go Back</a>

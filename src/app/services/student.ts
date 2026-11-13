@@ -1,17 +1,25 @@
-import { Injectable } from '@angular/core';
+
+import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StudentService {
 
-  private apiUrl = 'http://localhost:8080/api/regStudent';
+  private http = inject(HttpClient);
 
-  constructor(private http: HttpClient) { }
+  private apiUrl = 'http://localhost/smartAPI/api/apiToCall.php';
 
-  saveStudent(student: any) {
+  saveStudent(student: any): Observable<any> {
+
     console.log('Calling API:', this.apiUrl);
-    return this.http.post(this.apiUrl, student);
+    console.log('Student Data:', student);
+
+    return this.http.post<any>(
+      this.apiUrl,
+      student
+    );
   }
 }
